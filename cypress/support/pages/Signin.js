@@ -9,51 +9,38 @@ class Signin {
         const baseUrl = Cypress.env('baseUrl')
         cy.visit(baseUrl);
     }
+
     enterEmail() {
-        return Signinpage.getEmail().type('dweep25@yopmail.com')
+        return cy.signInWithEmail();
+
     }
 
     enterPassword() {
-        return Signinpage.getPassword().type('dweep!@#123456')
+        return cy.enterPassword();
     }
     submitButton() {
-        return Signinpage.getSignIn().click()
+        return Signinpage.getSignIn().customClick();
     }
 
     selectParticularProduct() {
         cy.wait(4000);
 
-        return Signinpage.getAllproducts().each(($ele, index, $list) => {
-            const productTitle = $ele.find('img').attr('alt');
-            if (productTitle === 'Hero Hoodie') {
-                cy.wrap($ele).click()
-                return false;
-            }
-        })
+        return Signinpage.getAllproducts().clickOnProductWithTitle('Hero Hoodie');
     }
     sizeParticularProduct() {
         cy.wait(4000);
-        return Signinpage.getSize().each(($ele, index, $list) => {
-            const productsize = $ele.text()
-            if (productsize.trim('') === 'XL') {
-                cy.wrap($ele).click({ force: true })
-            }
-        }).should('be.visible', 'XL')
+        return Signinpage.getSize().clickOnElementWithTextAndAssertVisibility('XL');
     }
 
     chooseProductColor() {
-        return Signinpage.getColor().each(($ele, index, $list) => {
-            if (index === 2) {
-                cy.wrap($ele).click({ force: true });
-            }
-        })
+        return Signinpage.getColor().clickOnElementAtIndex(2);
     }
     addTocart() {
-        return Signinpage.getAddtocart().click()
+        return Signinpage.getAddtocart().customClick();
     }
     clickOnAddtocart() {
         cy.wait(4000)
-        return Signinpage.getClickOncartButton().click()
+        return Signinpage.getClickOncartButton().customClick();
     }
 }
 

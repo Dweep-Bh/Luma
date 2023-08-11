@@ -7,6 +7,7 @@ class Signinpage {
 
     getEmail() {
         return cy.contains('Email')
+
     }
     getPassword() {
         return cy.get('input[title="Password"]')
