@@ -67,6 +67,12 @@ Cypress.Commands.add("clickNEnterText", (elementSelector, text) => {
     //cy.get(elementSelector).type(text);
 });
 // commands.js
+// commands.js
+
+Cypress.Commands.add('visitBaseUrl', () => {
+    const baseUrl = Cypress.env('baseUrl');
+    cy.visit(baseUrl);
+});
 
 Cypress.Commands.add('signInWithEmail', () => {
     const email = Cypress.env('email');

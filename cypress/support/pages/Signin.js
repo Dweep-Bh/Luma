@@ -2,12 +2,11 @@ import Signinpage from "../pageobjects/Signinpage";
 
 class Signin {
     clickOnSignin() {
-        return Signinpage.getClickOnSignin().click()
+        return Signinpage.getClickOnSignin().customClick();
     }
 
     getUrl() {
-        const baseUrl = Cypress.env('baseUrl')
-        cy.visit(baseUrl);
+        return cy.visitBaseUrl();
     }
 
     enterEmail() {
